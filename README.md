@@ -1,32 +1,42 @@
-Igralne Kocke - Dice Game
-Opis projekta
-Ta projekt je preprosta spletna igra s kockami, kjer lahko do 3 igralci vnesejo svoje podatke, vržejo kocke in vidijo rezultate. Igralci so razvrščeni na podlagi njihovih točk, s prikazom zmagovalca na podelitvi nagrad.
+# 🎲 Igralne Kocke
 
-Značilnosti
-Vnos podatkov za do 3 igralce (ime, priimek, naslov)
+Preprosta spletna igra za 2-3 igralce s samodejnim metanjem kock in razvrščanjem rezultatov.
 
-Avtomatsko metanje kock za vsakega igralca
+## ✨ Značilnosti
 
-Razvrstitev igralcev po doseženih točkah
+- **Vnos igralcev**
+  - Možnost vnosa do 3 igralcev (ime, priimek, naslov)
+  - Preverjanje veljavnosti vnosa (samo črke za ime in priimek)
 
-Vizualno privlačno podajanje rezultatov s podiumom
+- **Igralna mehanika**
+  - Samodejno metanje kock (3 kocke na igralca)
+  - Avtomatski izračun točk (vsota vrednosti kock)
+  - Razvrstitev igralcev s prikazom na podelitvi nagrad
 
-Avtomatski ponovni zagon igre po 10 sekundah
+- **Vizualni efekti**
+  - Zlati/srebrni/bronasti dizajn za zmagovalce
+  - Samodejni ponovni zagon igre po 10 sekundah
 
-Validacija vnosov
+## 🛠️ Tehnologije
 
-Tehnologije
-PHP (za logiko igre)
+- **Strežniška stran**: PHP (igralna logika, seje)
+- **Uporabniški vmesnik**: HTML5, CSS3 
+- **Dinamika**: JavaScript (odštevanje časa)
 
-HTML/CSS (za uporabniški vmesnik)
+## 🚀 Namestitev
 
-JavaScript (za odštevanje časa)
+1. Prenesite datoteke na PHP strežnik
+2. Odprite `index.php` v brskalniku
+3. Vnesite podatke igralcev in začnite igro
 
-Sessions (za shranjevanje podatkov med zahtevami)
+## 📜 Pravila igre
 
-Namestitev
-Klonirajte repozitorij
+1. Vsak igralec vrže 3 kocke
+2. Točke so vsota vseh treh metov
+3. Igralec z največ točkami zmaga
 
-Namestite na PHP strežnik
+## 🌟 Posebne funkcije
 
-Odprite index.php v brskalniku
+- Podium z nagradami (🥇, 🥈, 🥉)
+- Barvno označevanje zmagovalcev
+- Grafični prikaz metov kock
