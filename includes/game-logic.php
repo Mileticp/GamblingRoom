@@ -42,9 +42,6 @@ function validatePlayerInput($post) {
         if (empty($post["priimek$i"]) || !preg_match("/^[a-zA-Z\s]+$/", $post["priimek$i"])) {
             $errors[] = "Invalid surname for player $i";
         }
-        if (empty($post["naslov$i"])) {
-            $errors[] = "Address required for player $i";
-        }
     }
     return $errors;
 } 

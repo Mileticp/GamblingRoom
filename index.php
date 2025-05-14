@@ -11,18 +11,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['users'] = [
             [
                 'ime' => $_POST['ime1'],
-                'priimek' => $_POST['priimek1'],
-                'naslov' => $_POST['naslov1']
+                'priimek' => $_POST['priimek1']
             ],
             [
                 'ime' => $_POST['ime2'],
-                'priimek' => $_POST['priimek2'],
-                'naslov' => $_POST['naslov2']
+                'priimek' => $_POST['priimek2']
             ],
             [
                 'ime' => $_POST['ime3'],
-                'priimek' => $_POST['priimek3'],
-                'naslov' => $_POST['naslov3']
+                'priimek' => $_POST['priimek3']
             ]
         ];
         
@@ -48,7 +45,49 @@ if (isset($_SESSION['users']) && isset($_SESSION['kocke'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Igralne Kocke</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        window.onload = function() {
+            <?php if (empty($player_data) && $_SERVER['REQUEST_METHOD'] !== 'POST'): ?>
+            Swal.fire({
+                title: '<span style="color: #ffd700">Navodila za igro</span>',
+                html: `
+                    <div style="text-align: left; color: white; font-size: 1.1em">
+                        <p><span style="color: #ffd700">1.</span> Vnesite podatke za vse 3 igralce</p>
+                        <p><span style="color: #ffd700">2.</span> Vsak igralec bo vrgel ${<?php echo DICE_PER_PLAYER; ?>} kocke</p>
+                        <p><span style="color: #ffd700">3.</span> Zmagovalec se določi glede na vsoto vseh vrednosti kock</p>
+                        <p><span style="color: #ffd700">4.</span> Po koncu igre se bo stran avtomatsko osvežila</p>
+                    </div>
+                `,
+                background: 'linear-gradient(145deg, rgba(43, 43, 43, 0.95), rgba(28, 28, 28, 0.95))',
+                backdrop: `
+                    rgba(0,0,0,0.7)
+                    url("images/casino-chips.jpg")
+                    center top
+                    / cover
+                    fixed
+                `,
+                showConfirmButton: true,
+                confirmButtonText: 'Razumem',
+                confirmButtonColor: '#ffd700',
+                customClass: {
+                    popup: 'sweet-popup',
+                    title: 'sweet-title',
+                    content: 'sweet-content',
+                    confirmButton: 'sweet-confirm'
+                },
+                width: '600px',
+                padding: '2em',
+                border: '1px solid rgba(255, 215, 0, 0.3)',
+                borderRadius: '15px',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)'
+            });
+            <?php endif; ?>
+        };
+    </script>
 </head>
 <body>
     <?php if (empty($player_data)): ?>
@@ -73,11 +112,6 @@ if (isset($_SESSION['users']) && isset($_SESSION['kocke'])) {
                     <div class="form-group">
                         <label for="priimek<?php echo $i; ?>">Priimek:</label>
                         <input type="text" id="priimek<?php echo $i; ?>" name="priimek<?php echo $i; ?>" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="naslov<?php echo $i; ?>">Naslov:</label>
-                        <input type="text" id="naslov<?php echo $i; ?>" name="naslov<?php echo $i; ?>" required>
                     </div>
                 </div>
                 <?php endfor; ?>
@@ -117,7 +151,6 @@ if (isset($_SESSION['users']) && isset($_SESSION['kocke'])) {
             <?php foreach ($player_data as $i => $player): ?>
             <div class="square <?php echo $i == 0 ? 'winner-gold' : ($i == 1 ? 'winner-silver' : 'winner-bronze'); ?>">
                 <h2><?php echo ($i+1) . '. ' . htmlspecialchars($player['player']['ime'] . ' ' . $player['player']['priimek']); ?></h2>
-                <p>Naslov: <?php echo htmlspecialchars($player['player']['naslov']); ?></p>
                 
                 <div class="dice-container">
                     <?php foreach ($player['dice'] as $vrednost): ?>
@@ -132,7 +165,11 @@ if (isset($_SESSION['users']) && isset($_SESSION['kocke'])) {
         </div>
         
         <div class="countdown">
-            Nova igra čez: <span id="countdown">10</span> sekund
+            Nova igra čez: <span id="countdown">15</span> sekund
+        </div>
+        
+        <div class="back-button-container">
+            <button onclick="window.location.href='index.php'" class="back-button">Nazaj</button>
         </div>
         
         <script src="js/game.js"></script>
