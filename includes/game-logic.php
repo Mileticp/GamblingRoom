@@ -1,5 +1,4 @@
 <?php
-// Function to roll dice for a player
 function rollDice($numDice = 3) {
     $results = array();
     for ($i = 0; $i < $numDice; $i++) {
@@ -8,7 +7,6 @@ function rollDice($numDice = 3) {
     return $results;
 }
 
-// Function to calculate total score from dice rolls
 function calculateScore($diceResults) {
     $total = 0;
     foreach ($diceResults as $value) {
@@ -17,7 +15,6 @@ function calculateScore($diceResults) {
     return $total;
 }
 
-// Function to sort players by their scores
 function sortPlayersByScore($players, $diceResults) {
     $playerData = array();
     foreach ($players as $index => $player) {
@@ -36,7 +33,6 @@ function sortPlayersByScore($players, $diceResults) {
     return $playerData;
 }
 
-// Function to check if player input is valid
 function validatePlayerInput($post) {
     $errors = array();
     for ($i = 1; $i <= 3; $i++) {
